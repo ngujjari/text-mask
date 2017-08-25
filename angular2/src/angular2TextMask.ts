@@ -68,6 +68,13 @@ export class MaskedInputDirective implements ControlValueAccessor, OnChanges {
     this.setupMask()
 
     if (this.textMaskInputElement !== undefined) {
+
+      // naresh gujjari
+            if(value.slice(-1) == "-"){
+                value = value.slice(0, -1);
+                this.textMaskInputElement.update(value)
+            }
+
       this.textMaskInputElement.update(value)
       
       // get the updated value
@@ -91,7 +98,8 @@ export class MaskedInputDirective implements ControlValueAccessor, OnChanges {
         this.inputElement = this.element.nativeElement.getElementsByTagName('INPUT')[0]
       }
     }
-    
+    // naresh gujjari
+    create = true;
     if (this.inputElement && create) {
       this.textMaskInputElement = createTextMaskInputElement(
         Object.assign({inputElement: this.inputElement}, this.textMaskConfig)
